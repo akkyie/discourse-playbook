@@ -1,0 +1,10 @@
+- name: Rebuild Discourse
+  command: "{{ discourse_root }}/launcher rebuild app"
+  args:
+    chdir: "{{ discourse_root }}"
+  notify: Restart Discourse
+
+- name: Restart Discourse
+  command: "{{ discourse_root }}/launcher restart app"
+  args:
+    chdir: "{{ discourse_root }}"

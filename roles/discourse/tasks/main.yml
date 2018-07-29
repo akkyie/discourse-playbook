@@ -1,0 +1,12 @@
+- name: Clone Discourse
+  git:
+    repo: https://github.com/discourse/discourse_docker.git
+    dest: "{{ discourse_root }}"
+    update: no
+    depth: 1
+
+- name: Write Discourse settings
+  template:
+    src: app.yml
+    dest: "{{ discourse_root }}/containers/app.yml"
+  notify: Rebuild Discourse
