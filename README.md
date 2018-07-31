@@ -21,3 +21,18 @@ $ pipenv run \
     -u $USER \
     --vault-id vault_password
 ```
+
+## Local Testing with Docker
+
+### Test changes only
+
+```shell
+$ vagrant up --provision
+```
+
+### Test initialization from scratch
+
+```shell
+$ vagrant destroy
+$ vagrant up --provision
+```
