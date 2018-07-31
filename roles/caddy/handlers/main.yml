@@ -1,0 +1,17 @@
+- name: Copy Caddy executable
+  command: cp {{ caddy_root }}/caddy {{ caddy_bin_path }}
+  notify: Restart Caddy
+
+- name: Restart Caddy
+  systemd:
+    name: caddy.service
+    state: restarted
+    enabled: yes
+    daemon_reload: true
+
+- name: Reload Caddy
+  systemd:
+    name: caddy.service
+    state: reloaded
+    enabled: yes
+

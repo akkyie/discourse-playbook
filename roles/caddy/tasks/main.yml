@@ -1,0 +1,36 @@
+- name: Create Caddy directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - "{{ caddy_root }}"
+    - "{{ caddy_conf_root }}"
+    - "{{ caddy_ssl_root }}"
+
+- name: Install Caddy web server
+  unarchive:
+    src: https://caddyserver.com/download/linux/amd64?plugins=tls.dns.digitalocean&license=personal&telemetry=on
+    dest: "{{ caddy_root }}"
+    remote_src: yes
+  notify: Copy Caddy executable
+
+- name: Copy Caddy systemd service
+  template:
+    src: caddy.service
+    dest: /etc/systemd/system/caddy.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Caddy
+
+- name: Copy Caddy configuration
+  template:
+    src: Caddyfile
+    dest: "{{ caddy_conf_root }}/Caddyfile"
+    owner: root
+    group: root
+    mode: 0644
+  notify: Reload Caddy

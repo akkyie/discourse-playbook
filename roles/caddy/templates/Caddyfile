@@ -1,0 +1,13 @@
+{% if production is defined %}
+discourse.keio.app
+{% else %}
+localhost:80
+{% endif %}
+
+proxy / unix:/var/discourse/shared/standalone/nginx.http.sock
+
+log stdout
+
+tls {
+    dns digitalocean
+}
