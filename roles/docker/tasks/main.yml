@@ -17,3 +17,4 @@
   apt:
     name: docker-ce
     state: present
+  notify: Start Docker
