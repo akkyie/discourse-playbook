@@ -2,13 +2,13 @@
 
 ## Client Requirements
 
-- Python 3.5 or above
+- Python 3.7
 - [Pipenv](https://github.com/pypa/pipenv)
 
 ## Server Requirements
 
 - Ubuntu 14.04 or above (or [what Docker supports](https://docs.docker.com/install/linux/docker-ce/ubuntu/#os-requirements))
-- x86_64
+- [Managed node requirements of Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#managed-node-requirements): Python and SSH
 
 ## Run
 
