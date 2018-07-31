@@ -22,7 +22,7 @@ $ pipenv run \
     --vault-id vault_password
 ```
 
-## Local Testing with Docker
+## Local Testing with [Vagrant](https://www.vagrantup.com)
 
 ### Test changes only
 
