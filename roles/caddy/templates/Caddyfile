@@ -4,8 +4,11 @@ discourse.keio.app
 localhost:80
 {% endif %}
 
-proxy / unix:/var/discourse/shared/standalone/nginx.http.sock
+proxy / unix:/var/discourse/shared/standalone/nginx.http.sock {
+  transparent
+}
 
+gzip
 log stdout
 
 tls {

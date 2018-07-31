@@ -1,9 +1,17 @@
+- name: Add a group for Caddy
+  group:
+    name: "{{ caddy_group }}"
+
+- name: Add a user for Caddy
+  user:
+    name: "{{ caddy_user }}"
+
 - name: Create Caddy directories
   file:
     path: "{{ item }}"
     state: directory
-    owner: root
-    group: root
+    owner: "{{ caddy_user }}"
+    group: "{{ caddy_group }}"
     mode: 0755
   with_items:
     - "{{ caddy_root }}"
@@ -12,7 +20,7 @@
 
 - name: Install Caddy web server
   unarchive:
-    src: https://caddyserver.com/download/linux/amd64?plugins=tls.dns.digitalocean&license=personal&telemetry=on
+    src: https://caddyserver.com/download/linux/amd64?plugins=tls.dns.digitalocean&license=personal&telemetry=off
     dest: "{{ caddy_root }}"
     remote_src: yes
   notify: Copy Caddy executable
@@ -21,8 +29,8 @@
   template:
     src: caddy.service
     dest: /etc/systemd/system/caddy.service
-    owner: root
-    group: root
+    owner: "{{ caddy_user }}"
+    group: "{{ caddy_group }}"
     mode: 0644
   notify: Restart Caddy
 
@@ -30,7 +38,7 @@
   template:
     src: Caddyfile
     dest: "{{ caddy_conf_root }}/Caddyfile"
-    owner: root
-    group: root
+    owner: "{{ caddy_user }}"
+    group: "{{ caddy_group }}"
     mode: 0644
   notify: Reload Caddy

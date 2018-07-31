@@ -7,13 +7,13 @@ Wants=network-online.target systemd-networkd-wait-online.service
 [Service]
 Restart=on-abnormal
 
-User=www-data
-Group=www-data
+User={{ caddy_user }}
+Group={{ caddy_group }}
 
 Environment=CADDYPATH={{ caddy_ssl_root }}
 Environment=DO_AUTH_TOKEN={{ caddy_digitalocean_token }}
 
-ExecStart={{ caddy_bin_path }} -log stdout -agree=true -conf={{ caddy_conf_root }}/Caddyfile -root=/var/tmp
+ExecStart={{ caddy_bin_path }} -log stdout -agree=true -email={{ letsencrypt_account_email }} -conf={{ caddy_conf_root }}/Caddyfile -root=/var/tmp
 ExecReload=/bin/kill -USR1 $MAINPID
 
 KillMode=mixed

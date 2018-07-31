@@ -4,7 +4,6 @@ discourse_default_locale: ja
 discourse_hostname: discourse.keio.app
 
 discourse_developer_email: aky@keio.jp
-letsencrypt_account_email: aky@keio.jp
 
 discourse_smtp_address: smtp.sendgrid.net
 discourse_smtp_port: 587
