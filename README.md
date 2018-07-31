@@ -16,7 +16,7 @@
 
 ```shell
 $ pipenv run \
-    ansible-playbook site.yml \
+    ansible-playbook playbook.yml \
     -i hosts \
     -u $USER \
     --vault-id vault_password
